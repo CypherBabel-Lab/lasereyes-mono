@@ -72,7 +72,7 @@ export default class XVerseProvider extends WalletProvider {
   }
 
   addListeners() {
-    addListener('accountChange', () => {})
+    addListener('accountChange', () => { })
     addListener('networkChange', (event) => {
       if (event.type === 'networkChange') {
         this.handleNetworkChanged(event.bitcoin.name)
@@ -108,7 +108,7 @@ export default class XVerseProvider extends WalletProvider {
     this.parent.connect(XVERSE)
   }
 
-  async connect(_: ProviderType): Promise<void> {
+  async connect(_: ProviderType): Promise<any> {
     // if (address) {
     //   if (address.startsWith('tb1') && isMainnetNetwork(this.network)) {
     //     this.disconnect()
@@ -123,17 +123,17 @@ export default class XVerseProvider extends WalletProvider {
 
     let foundAddress:
       | {
-          purpose: string
-          address: string
-          publicKey: string
-        }
+        purpose: string
+        address: string
+        publicKey: string
+      }
       | undefined
     let foundPaymentAddress:
       | {
-          purpose: string
-          address: string
-          publicKey: string
-        }
+        purpose: string
+        address: string
+        publicKey: string
+      }
       | undefined
     let network: string | undefined
 
@@ -188,6 +188,10 @@ export default class XVerseProvider extends WalletProvider {
     )
     if (network) {
       this.$network.set(getNetworkForXverse(network))
+    }
+    return {
+      paymentPublicKey: foundPaymentAddress.publicKey,
+      paymentAddress: foundPaymentAddress.address
     }
   }
 
@@ -264,10 +268,10 @@ export default class XVerseProvider extends WalletProvider {
     inputsToSign: inputsToSignProp,
   }: WalletProviderSignPsbtOptions): Promise<
     | {
-        signedPsbtHex: string | undefined
-        signedPsbtBase64: string | undefined
-        txId?: string | undefined
-      }
+      signedPsbtHex: string | undefined
+      signedPsbtBase64: string | undefined
+      txId?: string | undefined
+    }
     | undefined
   > {
     try {

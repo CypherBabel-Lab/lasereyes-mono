@@ -175,10 +175,11 @@ export class LaserEyesClient {
         throw new Error('Unsupported wallet provider')
       }
       const provider = this.$providerMap[defaultWallet]
-      await provider?.connect(defaultWallet)
+      const res = await provider?.connect(defaultWallet)
       this.$store.setKey('provider', defaultWallet)
       await this.checkNetwork()
       this.$store.setKey('connected', true)
+      return res
     } catch (error) {
       console.error('Error during connect:', error)
       this.$store.setKey('isConnecting', false)
