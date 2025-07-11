@@ -289,16 +289,16 @@ export default class MagicEdenProvider extends WalletProvider {
     const toSignPsbt = bitcoin.Psbt.fromBase64(String(psbtBase64), {
       network: getBitcoinNetwork(this.network),
     })
-    
+
     type InputAddressData = {
       address: string
       signingIndexes: number[]
       sigHash?: number
     }
-    
+
     const inputs = toSignPsbt.data.inputs
     let inputsToSign: InputAddressData[] = []
-    
+
     if (inputsToSignProp) {
       const tempInputsToSign = inputsToSignProp.reduce(
         (acc: Record<string, number[]>, input) => ({

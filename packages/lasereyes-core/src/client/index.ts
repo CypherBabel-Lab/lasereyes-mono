@@ -179,6 +179,7 @@ export class LaserEyesClient {
       this.$store.setKey('provider', defaultWallet)
       await this.checkNetwork()
       this.$store.setKey('connected', true)
+      console.log('connected', res)
       return res
     } catch (error) {
       console.error('Error during connect:', error)
@@ -538,4 +539,4 @@ export class LaserEyesClient {
   }
 }
 
-export * from "./modules"
+export * from './modules'

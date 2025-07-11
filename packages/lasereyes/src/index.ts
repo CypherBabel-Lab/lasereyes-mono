@@ -1,4 +1,4 @@
-export * from '@omnisat/lasereyes-core'
+export * from '@bitomni_tyche/lasereyes-core'
 export {
   useLaserEyes,
   LaserEyesProvider,
@@ -12,5 +12,5 @@ export {
   WizzLogo,
   XverseLogo,
   LaserEyesLogo,
-} from '@omnisat/lasereyes-react'
-export type { LaserEyesContextType } from '@omnisat/lasereyes-react'
+} from '@bitomni_tyche/lasereyes-react'
+export type { LaserEyesContextType } from '@bitomni_tyche/lasereyes-react'

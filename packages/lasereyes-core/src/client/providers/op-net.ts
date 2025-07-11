@@ -4,16 +4,21 @@ import { getNetworkForUnisat, getUnisatNetwork } from '../../constants/networks'
 import { Config, NetworkType, ProviderType } from '../../types'
 import { OP_NET } from '../../constants/wallets'
 import { listenKeys, MapStore, WritableAtom } from 'nanostores'
-import { LaserEyesStoreType, SignMessageOptions, WalletProviderSignPsbtOptions } from '../types'
+import {
+  LaserEyesStoreType,
+  SignMessageOptions,
+  WalletProviderSignPsbtOptions,
+} from '../types'
 import { BIP322, BIP322_SIMPLE } from '../../constants'
 import { LaserEyesClient } from '..'
 import { omitUndefined } from '../../lib/utils'
 
 export default class OpNetProvider extends WalletProvider {
-  constructor(stores: {
-    $store: MapStore<LaserEyesStoreType>
-    $network: WritableAtom<NetworkType>
-  },
+  constructor(
+    stores: {
+      $store: MapStore<LaserEyesStoreType>
+      $network: WritableAtom<NetworkType>
+    },
     parent: LaserEyesClient,
     config?: Config
   ) {
@@ -150,20 +155,26 @@ export default class OpNetProvider extends WalletProvider {
     return await this.library?.signMessage(message, protocol)
   }
 
-  async signPsbt(
-    { psbtHex, broadcast, finalize, inputsToSign }: WalletProviderSignPsbtOptions
-  ): Promise<
+  async signPsbt({
+    psbtHex,
+    broadcast,
+    finalize,
+    inputsToSign,
+  }: WalletProviderSignPsbtOptions): Promise<
     | {
-      signedPsbtHex: string | undefined
-      signedPsbtBase64: string | undefined
-      txId?: string | undefined
-    }
+        signedPsbtHex: string | undefined
+        signedPsbtBase64: string | undefined
+        txId?: string | undefined
+      }
     | undefined
   > {
-    const signedPsbt = await this.library?.signPsbt(psbtHex, omitUndefined({
-      autoFinalized: finalize,
-      toSignInputs: inputsToSign,
-    }))
+    const signedPsbt = await this.library?.signPsbt(
+      psbtHex,
+      omitUndefined({
+        autoFinalized: finalize,
+        toSignInputs: inputsToSign,
+      })
+    )
 
     const psbtSignedPsbt = bitcoin.Psbt.fromHex(signedPsbt)
 

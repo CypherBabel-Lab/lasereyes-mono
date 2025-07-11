@@ -192,11 +192,14 @@ export class WizzProvider extends WalletProvider {
       }
     | undefined
   > {
-    const signedPsbt = await this.library?.signPsbt(psbtHex, omitUndefined({
-      autoFinalized: finalize,
-      broadcast: false,
-      toSignInputs: inputsToSign,
-    }))
+    const signedPsbt = await this.library?.signPsbt(
+      psbtHex,
+      omitUndefined({
+        autoFinalized: finalize,
+        broadcast: false,
+        toSignInputs: inputsToSign,
+      })
+    )
 
     const psbtSignedPsbt = bitcoin.Psbt.fromHex(signedPsbt)
 

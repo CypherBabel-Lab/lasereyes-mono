@@ -14,7 +14,6 @@ import { toXOnly } from 'bitcoinjs-lib/src/psbt/bip371'
 import { LaserEyesClient } from '../..'
 import { getBitcoinNetwork } from '../../../lib/helpers'
 
-
 export enum AddressType {
   P2PKH = 0,
   P2TR = 1,

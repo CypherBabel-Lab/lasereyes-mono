@@ -1,5 +1,5 @@
 {
-  "name": "lasereyes-mono",
+  "name": "lasereyes-mono11",
   "private": true,
   "scripts": {
     "build": "turbo build",

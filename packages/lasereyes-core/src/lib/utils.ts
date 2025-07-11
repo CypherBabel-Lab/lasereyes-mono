@@ -112,7 +112,9 @@ export const selectAlkanesUTXOs = (
 
   for (const utxo of utxos) {
     if (utxo.alkanes.length > 0) {
-      const alkane = utxo.alkanes.find((a) => a.id === alkaneIdToString(alkaneId))
+      const alkane = utxo.alkanes.find(
+        (a) => a.id === alkaneIdToString(alkaneId)
+      )
       if (alkane) {
         selectedUTXOs.push(utxo)
         totalBtcAmount += BigInt(utxo.btcValue)
@@ -124,7 +126,7 @@ export const selectAlkanesUTXOs = (
 
   if (totalAlkanesAmount < targetAlkanesAmount) {
     throw new Error('Not enough alkanes')
-  } 
+  }
 
   return {
     utxos: selectedUTXOs,

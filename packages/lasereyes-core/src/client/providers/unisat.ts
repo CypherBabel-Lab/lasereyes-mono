@@ -126,15 +126,15 @@ export default class UnisatProvider extends WalletProvider {
   }
 
   async getNetwork() {
-    const unisatNetwork = (await this.library?.getChain()) as {
-      enum: string
-      name: string
-      network: string
+    if (typeof this.library?.getChain === 'function') {
+      const unisatNetwork = await this.library.getChain();
+      if (!unisatNetwork) {
+        return this.network;
+      }
+      console.log('getNetwork', this.library);
+      return getNetworkForUnisat(unisatNetwork.enum) as NetworkType;
     }
-    if (!unisatNetwork) {
-      return this.network
-    }
-    return getNetworkForUnisat(unisatNetwork.enum) as NetworkType
+    return getNetworkForUnisat('BITCOIN_MAINNET') as NetworkType;
   }
 
   async sendBTC(to: string, amount: number): Promise<string> {
@@ -159,10 +159,10 @@ export default class UnisatProvider extends WalletProvider {
     inputsToSign,
   }: WalletProviderSignPsbtOptions): Promise<
     | {
-        signedPsbtHex: string | undefined
-        signedPsbtBase64: string | undefined
-        txId?: string | undefined
-      }
+      signedPsbtHex: string | undefined
+      signedPsbtBase64: string | undefined
+      txId?: string | undefined
+    }
     | undefined
   > {
     const signedPsbt = await this.library?.signPsbt(
