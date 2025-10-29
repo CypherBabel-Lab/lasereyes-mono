@@ -20,7 +20,7 @@
     "url": "https://github.com/omnisat/lasereyes-mono.git"
   },
   "private": false,
-  "version": "0.0.3",
+  "version": "0.0.8",
   "type": "module",
   "module": "./dist/index.js",
   "files": [
@@ -46,7 +46,7 @@
     "vite-plugin-dts": "^4.2.1"
   },
   "dependencies": {
-    "@bitomni_tyche/lasereyes-core": "0.0.2",
+    "@bitomni_tyche/lasereyes-core": "0.0.7",
     "@bitomni_tyche/lasereyes-react": "0.0.2",
     "bip39": "^3.1.0"
   },
