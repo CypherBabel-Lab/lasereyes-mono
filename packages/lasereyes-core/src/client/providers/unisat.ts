@@ -30,6 +30,7 @@ export default class UnisatProvider extends WalletProvider {
 
   public get library(): any | undefined {
     return (window as any).unisat
+
   }
 
   public get network(): NetworkType {
@@ -57,9 +58,11 @@ export default class UnisatProvider extends WalletProvider {
         this.removeListeners()
         return
       }
-      this.library.getAccounts().then((accounts: string[]) => {
-        this.handleAccountsChanged(accounts)
-      })
+      if (this.library.getAccounts) {
+        this.library.getAccounts().then((accounts: string[]) => {
+          this.handleAccountsChanged(accounts)
+        })
+      }
       this.addListeners()
     })
   }

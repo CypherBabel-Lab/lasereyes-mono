@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "dependencies": {
-    "@omnisat/lasereyes": "workspace:*",
+    "@bitomni_tyche/lasereyes": "workspace:*",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "web-vitals": "^2.1.4"
